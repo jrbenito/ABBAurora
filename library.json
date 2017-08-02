@@ -1,0 +1,27 @@
+{
+  "name": "ABB Aurora",
+  "description": "ABB (PowerOne) Aurora protocol for communication with Inverters and compatible devices.",
+  "keywords": "RS485, Aurora, ABB, Inverter, PV",
+  "authors": [
+      {
+          "name": "Davide Rosa",
+          "email": "info@drhack.it",
+          "url": "http://www.drhack.it"
+      },
+      {
+          "name": "Josenivaldo Benito Junior",
+          "email": "jrbenito@benito.qsl.br",
+          "url": "https://benito.com.br",
+          "maintainer": true
+      }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrbenito/ABBAurora.git"
+  },
+  "version": "0.1.0",
+  "licence": "LGPL",
+  "examples": [
+    "examples/*.ino"
+  ]
+}
