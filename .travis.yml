@@ -33,5 +33,11 @@ env:
 install:
     - pip install -U platformio
 
+    # Examples depend on libraries below, lets install it
+    #
+    # http://platformio.org/lib/show/440/Thread
+    # http://platformio.org/lib/show/44/Time
+    - platformio lib -g install 44 440
+
 script:
     - platformio ci --lib="." --board=uno --board=moteino --board=megaatmega2560
