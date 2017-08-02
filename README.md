@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jrbenito/ABBAurora.svg?branch=master)](https://travis-ci.org/jrbenito/ABBAurora)
 # ABBAurora
 ABB Aurora protocol (also used by former PowerOne in their Aurora Inverters) for communication with inverters and other devices
 
