@@ -28,10 +28,10 @@ cache:
         - "~/.platformio"
 
 env:
-    - PLATFORMIO_CI_SRC=examples/abb-menus.ino
+    - PLATFORMIO_CI_SRC=examples/abb-menu.ino
 
 install:
     - pip install -U platformio
 
 script:
-    - platformio ci --lib="." --board=uno --board=miniwireless --board=atmega328p
+    - platformio ci --lib="." --board=uno --board=moteino --board=megaatmega2560
