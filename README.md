@@ -22,3 +22,10 @@ Originals can be found on [Davide's page](http://www.drhack.it/arduino/32-lettur
 
 Please notice that newer product report model codes not recognized by this library yet. Please, send pull requests or open a issue
 with register values returned by your product and its model and I will be glad to merge/implement it.
+
+## Similar Work
+
+Other Arduino projects that uses Aurora protocol
+
+. [ArdaSol](https://github.com/hpieren/ArdaSol)
+. [PVIMon](https://github.com/H4ndl3/pvimon)
