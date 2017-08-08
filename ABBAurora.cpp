@@ -128,7 +128,7 @@ String ABBAurora::TransmissionState(byte id) {
             return F("The variable is not available, retry");
             break;
         default:
-            return F("Sconosciuto");
+            return F("Unknown");
             break;
     }
 }
@@ -259,7 +259,7 @@ String ABBAurora::GlobalState(byte id) {
         case 101:
             return F("Freeze");
         default:
-            return F("Sconosciuto");
+            return F("Unknown");
             break;
     }
 }
@@ -328,7 +328,7 @@ String ABBAurora::DcDcState(byte id) {
             return F("DcDc Comm.Error");
             break;
         default:
-            return F("Sconosciuto");
+            return F("Unknown");
             break;
     }
 }
@@ -457,7 +457,7 @@ String ABBAurora::InverterState(byte id) {
             return F("Input OC");
             break;
         default:
-            return F("Sconosciuto");
+            return F("Unknown");
             break;
     }
 }
@@ -661,7 +661,7 @@ String ABBAurora::AlarmState(byte id) {
             return F("Jbox fail");
             break;
         default:
-            return F("Sconosciuto");
+            return F("Unknown");
             break;
     }
 }
@@ -744,7 +744,7 @@ bool ABBAurora::ReadVersion() {
             Version.Par1 = F("Aurora 10.0kW");
             break;
         default:
-            Version.Par1 = F("Sconosciuto");
+            Version.Par1 = F("Unknown");
             break;
     }
 
@@ -769,7 +769,7 @@ bool ABBAurora::ReadVersion() {
             Version.Par2 = F("AS 4777");
             break;
         default:
-            Version.Par2 = F("Sconosciuto");
+            Version.Par2 = F("Unknown");
             break;
     }
 
@@ -782,7 +782,7 @@ bool ABBAurora::ReadVersion() {
             Version.Par3 = F("Transformer Version");
             break;
         default:
-            Version.Par3 = F("Sconosciuto");
+            Version.Par3 = F("Unknown");
             break;
     }
 
@@ -795,7 +795,7 @@ bool ABBAurora::ReadVersion() {
             Version.Par4 = F("PV version");
             break;
         default:
-            Version.Par4 = F("Sconosciuto");
+            Version.Par4 = F("Unknown");
             break;
     }
 
