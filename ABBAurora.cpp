@@ -53,14 +53,14 @@ bool ABBAurora::Send(byte address, byte param0, byte param1, byte param2, byte p
 
     for (int i = 0; i < this->MaxAttempt; i++)
     {
-        digitalWrite(SSerialTxControl, RS485Transmit);
+        digitalWrite(this->TXPinControl, RS485Transmit);
         delay(50);
 
         if (Serial.write(SendData, sizeof(SendData)) != 0) {
             Serial.flush();
             SendStatus = true;
 
-            digitalWrite(SSerialTxControl, RS485Receive);
+            digitalWrite(this->TXPinControl, RS485Receive);
 
             if (Serial.readBytes(ReceiveData, sizeof(ReceiveData)) != 0) {
                 if ((int)word(ReceiveData[7], ReceiveData[6]) == Crc16(ReceiveData, 0, 6)) {
@@ -75,6 +75,17 @@ bool ABBAurora::Send(byte address, byte param0, byte param1, byte param2, byte p
 
 ABBAurora::ABBAurora(byte address) {
     this->Address = address;
+    this->TXPinControl = SSerialTxControl;
+
+    SendStatus = false;
+    ReceiveStatus = false;
+
+    clearReceiveData();
+}
+
+ABBAurora::ABBAurora(byte address, byte TXPinControl) {
+    this->Address = address;
+    this->TXPinControl = TXPinControl;
 
     SendStatus = false;
     ReceiveStatus = false;

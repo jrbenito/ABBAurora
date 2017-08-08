@@ -12,6 +12,7 @@ class ABBAurora {
     private:
         int MaxAttempt = 1;
         byte Address = 0;
+        byte TXPinControl;
 
         void clearData(byte *data, byte len);
 
@@ -35,6 +36,7 @@ class ABBAurora {
         byte ReceiveData[8];
 
         ABBAurora(byte address);
+        ABBAurora(byte address, byte TXPinControl);
 
         void clearReceiveData();
 
