@@ -18,7 +18,7 @@ class clsBottone {
 private:
   int Pin;
   unsigned long lastDebounceTime = 0;
-  long debounceDelay = 250;
+  unsigned long debounceDelay = 250;
   byte buttonState = 0;
   byte lastButtonState = 0;
   byte State = 0;
