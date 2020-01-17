@@ -107,6 +107,11 @@ void ABBAurora::clearReceiveData()
 /**
  * Reads a single value of the digital signal procesor.
  * Not all values are supported by all models. 
+ * Read values are in following Units:
+ * Voltage V
+ * Current A 
+ * Power W 
+ * Temperature °C 
  * 
  **/
 bool ABBAurora::ReadDSPValue(DSP_VALUE_TYPE type, DSP_GLOBAL global)
