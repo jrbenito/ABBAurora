@@ -81,7 +81,7 @@ class ABBAurora {
         typedef struct {
             byte TransmissionState;
             byte GlobalState;
-            float Valore;
+            float Value;
             bool ReadState;
         } DataDSP;
 
@@ -92,7 +92,7 @@ class ABBAurora {
         typedef struct {
             byte TransmissionState;
             byte GlobalState;
-            unsigned long Secondi;
+            unsigned long Seconds;
             bool ReadState;
         } DataTimeDate;
 
@@ -163,7 +163,7 @@ class ABBAurora {
         typedef struct {
             byte TransmissionState;
             byte GlobalState;
-            unsigned long Energia;
+            unsigned long Energy;
             bool ReadState;
         } DataCumulatedEnergy;
 

@@ -166,7 +166,7 @@ bool ABBAurora::ReadDSP(byte type, byte global) {
     foo.asBytes[2] = ReceiveData[3];
     foo.asBytes[3] = ReceiveData[2];
 
-    DSP.Valore = foo.asFloat;
+    DSP.Value = foo.asFloat;
 
     return DSP.ReadState;
 }
@@ -181,7 +181,7 @@ bool ABBAurora::ReadTimeDate() {
 
     TimeDate.TransmissionState = ReceiveData[0];
     TimeDate.GlobalState = ReceiveData[1];
-    TimeDate.Secondi = ((unsigned long)ReceiveData[2] << 24) + ((unsigned long)ReceiveData[3] << 16) + ((unsigned long)ReceiveData[4] << 8) + (unsigned long)ReceiveData[5];
+    TimeDate.Seconds = ((unsigned long)ReceiveData[2] << 24) + ((unsigned long)ReceiveData[3] << 16) + ((unsigned long)ReceiveData[4] << 8) + (unsigned long)ReceiveData[5];
     return TimeDate.ReadState;
 }
 
@@ -289,7 +289,7 @@ bool ABBAurora::ReadCumulatedEnergy(byte par) {
         ulo.asBytes[2] = ReceiveData[3];
         ulo.asBytes[3] = ReceiveData[2];
 
-        CumulatedEnergy.Energia = ulo.asUlong;
+        CumulatedEnergy.Energy = ulo.asUlong;
     }
     return CumulatedEnergy.ReadState;
 }
