@@ -1,194 +1,195 @@
 #ifndef ABBAurora_h
 #define ABBAurora_h
 #include <Arduino.h>
-#include <Wire.h> 
+#include <Wire.h>
 
 //RS485 control
-#define SSerialTxControl 5
-#define RS485Transmit HIGH 
-#define RS485Receive LOW 
+#define RS485Transmit HIGH
+#define RS485Receive LOW
 
-class ABBAurora {
-    private:
-        int MaxAttempt = 1;
-        byte Address = 0;
-        byte TXPinControl;
+class ABBAurora
+{
+private:
+    int MaxAttempt = 1;
+    byte Address = 0;
+    static byte TXPinControl;
+    static HardwareSerial *serial;
 
-        void clearData(byte *data, byte len);
+    void clearData(byte *data, byte len);
 
-        int Crc16(byte *data, int offset, int count);
+    int Crc16(byte *data, int offset, int count);
 
-        bool Send(byte address, byte param0, byte param1, byte param2, byte param3, byte param4, byte param5, byte param6);
+    bool Send(byte address, byte param0, byte param1, byte param2, byte param3, byte param4, byte param5, byte param6);
 
-        union {
-            byte asBytes[4];
-            float asFloat;
-        } foo;
+    union {
+        byte asBytes[4];
+        float asFloat;
+    } foo;
 
-        union {
-            byte asBytes[4];
-            unsigned long asUlong;
-        } ulo;
+    union {
+        byte asBytes[4];
+        unsigned long asUlong;
+    } ulo;
 
-    public:
-        bool SendStatus = false;
-        bool ReceiveStatus = false;
-        byte ReceiveData[8];
+public:
+    bool SendStatus = false;
+    bool ReceiveStatus = false;
+    byte ReceiveData[8];
 
-        ABBAurora(byte address);
-        ABBAurora(byte address, byte TXPinControl);
+    static void setup(HardwareSerial &serial, byte RXGpioPin, byte TXGpioPin, byte TXControllPin);
 
-        void clearReceiveData();
+    ABBAurora(byte address);
 
-        String TransmissionState(byte id);
+    void clearReceiveData();
 
-        String GlobalState(byte id);
+    typedef struct
+    {
+        byte TransmissionState;
+        byte GlobalState;
+        byte InverterState;
+        byte Channel1State;
+        byte Channel2State;
+        byte AlarmState;
+        bool ReadState;
+    } DataState;
 
-        String DcDcState(byte id);
+    DataState State;
 
-        String InverterState(byte id);
+    bool ReadState();
 
-        String AlarmState(byte id);
+    typedef struct
+    {
+        byte TransmissionState;
+        byte GlobalState;
+        String Par1;
+        String Par2;
+        String Par3;
+        String Par4;
+        bool ReadState;
+    } DataVersion;
 
-        typedef struct {
-            byte TransmissionState;
-            byte GlobalState;
-            byte InverterState;
-            byte Channel1State;
-            byte Channel2State;
-            byte AlarmState;
-            bool ReadState;
-        } DataState;
+    DataVersion Version;
 
-        DataState State;
+    bool ReadVersion();
 
-        bool ReadState();
+    typedef struct
+    {
+        byte TransmissionState;
+        byte GlobalState;
+        float Value;
+        bool ReadState;
+    } DataDSP;
 
-        typedef struct {
-            byte TransmissionState;
-            byte GlobalState;
-            String Par1;
-            String Par2;
-            String Par3;
-            String Par4;
-            bool ReadState;
-        } DataVersion;
+    DataDSP DSP;
 
-        DataVersion Version;
+    bool ReadDSP(byte type, byte global);
 
-        bool ReadVersion();
+    typedef struct
+    {
+        byte TransmissionState;
+        byte GlobalState;
+        unsigned long Seconds;
+        bool ReadState;
+    } DataTimeDate;
 
-        typedef struct {
-            byte TransmissionState;
-            byte GlobalState;
-            float Value;
-            bool ReadState;
-        } DataDSP;
+    DataTimeDate TimeDate;
 
-        DataDSP DSP;
+    bool ReadTimeDate();
 
-        bool ReadDSP(byte type, byte global);
+    typedef struct
+    {
+        byte TransmissionState;
+        byte GlobalState;
+        byte Alarms1;
+        byte Alarms2;
+        byte Alarms3;
+        byte Alarms4;
+        bool ReadState;
+    } DataLastFourAlarms;
 
-        typedef struct {
-            byte TransmissionState;
-            byte GlobalState;
-            unsigned long Seconds;
-            bool ReadState;
-        } DataTimeDate;
+    DataLastFourAlarms LastFourAlarms;
 
-        DataTimeDate TimeDate;
+    bool ReadLastFourAlarms();
 
-        bool ReadTimeDate();
+    bool ReadJunctionBoxState(byte nj);
 
-        typedef struct {
-            byte TransmissionState;
-            byte GlobalState;
-            byte Alarms1;
-            byte Alarms2;
-            byte Alarms3;
-            byte Alarms4;
-            bool ReadState;
-        } DataLastFourAlarms;
+    bool ReadJunctionBoxVal(byte nj, byte par);
 
-        DataLastFourAlarms LastFourAlarms;
+    // Inverters
+    typedef struct
+    {
+        String PN;
+        bool ReadState;
+    } DataSystemPN;
 
-        bool ReadLastFourAlarms();
+    DataSystemPN SystemPN;
 
-        bool ReadJunctionBoxState(byte nj);
+    bool ReadSystemPN();
 
-        bool ReadJunctionBoxVal(byte nj, byte par);
+    typedef struct
+    {
+        String SerialNumber;
+        bool ReadState;
+    } DataSystemSerialNumber;
 
-        // Inverters
-        typedef struct {
-            String PN;
-            bool ReadState;
-        } DataSystemPN;
+    DataSystemSerialNumber SystemSerialNumber;
 
-        DataSystemPN SystemPN;
+    bool ReadSystemSerialNumber();
 
-        bool ReadSystemPN();
+    typedef struct
+    {
+        byte TransmissionState;
+        byte GlobalState;
+        String Week;
+        String Year;
+        bool ReadState;
+    } DataManufacturingWeekYear;
 
-        typedef struct {
-            String SerialNumber;
-            bool ReadState;
-        } DataSystemSerialNumber;
+    DataManufacturingWeekYear ManufacturingWeekYear;
 
-        DataSystemSerialNumber SystemSerialNumber;
+    bool ReadManufacturingWeekYear();
 
-        bool ReadSystemSerialNumber();
+    typedef struct
+    {
+        byte TransmissionState;
+        byte GlobalState;
+        String Release;
+        bool ReadState;
+    } DataFirmwareRelease;
 
-        typedef struct {
-            byte TransmissionState;
-            byte GlobalState;
-            String Week;
-            String Year;
-            bool ReadState;
-        } DataManufacturingWeekYear;
+    DataFirmwareRelease FirmwareRelease;
 
-        DataManufacturingWeekYear ManufacturingWeekYear;
+    bool ReadFirmwareRelease();
 
-        bool ReadManufacturingWeekYear();
+    typedef struct
+    {
+        byte TransmissionState;
+        byte GlobalState;
+        unsigned long Energy;
+        bool ReadState;
+    } DataCumulatedEnergy;
 
-        typedef struct {
-            byte TransmissionState;
-            byte GlobalState;
-            String Release;
-            bool ReadState;
-        } DataFirmwareRelease;
+    DataCumulatedEnergy CumulatedEnergy;
 
-        DataFirmwareRelease FirmwareRelease;
+    bool ReadCumulatedEnergy(byte par);
 
-        bool ReadFirmwareRelease();
+    bool WriteBaudRateSetting(byte baudcode);
 
-        typedef struct {
-            byte TransmissionState;
-            byte GlobalState;
-            unsigned long Energy;
-            bool ReadState;
-        } DataCumulatedEnergy;
+    // Central
+    bool ReadFlagsSwitchCentral();
 
-        DataCumulatedEnergy CumulatedEnergy;
+    bool ReadCumulatedEnergyCentral(byte var, byte ndays_h, byte ndays_l, byte global);
 
-        bool ReadCumulatedEnergy(byte par);
+    bool ReadFirmwareReleaseCentral(byte var);
 
-        bool WriteBaudRateSetting(byte baudcode);
+    bool ReadBaudRateSettingCentral(byte baudcode, byte serialline);
 
-        // Central
-        bool ReadFlagsSwitchCentral();
+    bool ReadSystemInfoCentral(byte var);
 
-        bool ReadCumulatedEnergyCentral(byte var, byte ndays_h, byte ndays_l, byte global);
+    bool ReadJunctionBoxMonitoringCentral(byte cf, byte rn, byte njt, byte jal, byte jah);
 
-        bool ReadFirmwareReleaseCentral(byte var);
+    bool ReadSystemPNCentral();
 
-        bool ReadBaudRateSettingCentral(byte baudcode, byte serialline);
-
-        bool ReadSystemInfoCentral(byte var);
-
-        bool ReadJunctionBoxMonitoringCentral(byte cf, byte rn, byte njt, byte jal, byte jah);
-
-        bool ReadSystemPNCentral();
-
-        bool ReadSystemSerialNumberCentral();
-
+    bool ReadSystemSerialNumberCentral();
 };
 #endif
