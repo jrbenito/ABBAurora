@@ -19,9 +19,9 @@
     "type": "git",
     "url": "https://github.com/jrbenito/ABBAurora.git"
   },
-  "version": "0.2.1",
+  "version": "1.0.0",
   "licence": "LGPL",
   "examples": [
-    "examples/*.ino"
+    "examples/*.cpp"
   ]
 }
