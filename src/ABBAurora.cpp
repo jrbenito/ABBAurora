@@ -247,7 +247,7 @@ bool ABBAurora::ReadFirmwareRelease()
     return FirmwareRelease.ReadState;
 }
 
-bool ABBAurora::ReadCumulatedEnergy(byte par)
+bool ABBAurora::ReadCumulatedEnergy(CUMULATED_ENERGY_TYPE par)
 {
     if ((int)par >= 0 && (int)par <= 6)
     {

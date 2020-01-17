@@ -171,7 +171,7 @@ public:
 
     DataCumulatedEnergy CumulatedEnergy;
 
-    bool ReadCumulatedEnergy(byte par);
+    bool ReadCumulatedEnergy(CUMULATED_ENERGY_TYPE par);
 
     bool WriteBaudRateSetting(byte baudcode);
 
@@ -252,5 +252,15 @@ enum DSP_GLOBAL
 {
     GLOBAL_MESSUREMENT = 1,
     MODULE_MESSUREMENT = 0,
-}
+};
+
+enum CUMULATED_ENERGY_TYPE
+{
+    CURRENT_DAY = 0,
+    CURRENT_WEEK =0,
+    CURRENT_MONTH = 3,
+    CURRENT_YEAR = 4,
+    TOTAL = 5,
+    SINCE_RESET = 6
+};
 #endif
