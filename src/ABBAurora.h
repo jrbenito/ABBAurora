@@ -82,7 +82,7 @@ public:
 
     DataDSP DSP;
 
-    bool ReadDSPValue(DSP_VALUE_TYPE type, byte global);
+    bool ReadDSPValue(DSP_VALUE_TYPE type, DSP_GLOBAL global);
 
     typedef struct
     {
@@ -248,4 +248,9 @@ enum DSP_VALUE_TYPE
 
 };
 
+enum DSP_GLOBAL
+{
+    GLOBAL_MESSUREMENT = 1,
+    MODULE_MESSUREMENT = 0,
+}
 #endif

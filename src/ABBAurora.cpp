@@ -1,9 +1,8 @@
 #include "ABBAurora.h"
 #include "ABBAuroraStrings.h"
 
-
 byte ABBAurora::TXPinControl;
-HardwareSerial* ABBAurora::serial;
+HardwareSerial *ABBAurora::serial;
 
 ABBAurora::ABBAurora(byte address)
 {
@@ -82,7 +81,7 @@ bool ABBAurora::Send(byte address, byte param0, byte param1, byte param2, byte p
 
         if (serial->write(SendData, sizeof(SendData)) != 0)
         {
-           serial->flush();
+            serial->flush();
             SendStatus = true;
 
             digitalWrite(TXPinControl, RS485Receive);
@@ -105,7 +104,12 @@ void ABBAurora::clearReceiveData()
     clearData(ReceiveData, 8);
 }
 
-bool ABBAurora::ReadDSPValue(DSP_VALUE_TYPE type, byte global)
+/**
+ * Reads a single value of the digital signal procesor.
+ * Not all values are supported by all models. 
+ * 
+ **/
+bool ABBAurora::ReadDSPValue(DSP_VALUE_TYPE type, DSP_GLOBAL global)
 {
     if ((((int)type >= 1 && (int)type <= 9) || ((int)type >= 21 && (int)type <= 63)) && ((int)global >= 0 && (int)global <= 1))
     {
