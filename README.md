@@ -11,6 +11,8 @@ This library intends to communicate with ABB Inverters using RS485/Aurora Protoc
 document from Power One (this company was acquired by ABB year ago) and others were derived from projecs like [aurora monitor](http://auroramonitor.sourceforge.net/)
 and [Linux Aurora program](http://www.curtronics.com/Solar/AuroraData.html) from Curtis Blank.
 
+A documentation of the Aurora Inverter Communication Protocol can be found [here](https://www.drhack.it/images/PDF/AuroraCommunicationProtocol_4_2.pdf).
+
 ## Original work
 
 Original arduino sketches (example provided) were originally wrote by Mr. Davide Rosa who was kind enough to give me permission to
