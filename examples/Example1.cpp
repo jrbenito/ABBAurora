@@ -5,6 +5,10 @@
 #include <Arduino.h>
 #include <ABBAurora.h>
 
+
+#if not defined(ESP8266)
+
+
 #define RX2 16
 #define TX2 17
 #define INVERTER_ADDRESS 2
@@ -47,3 +51,6 @@ void loop()
         Serial.println(" Wh");
     }
 }
+
+
+#endif
