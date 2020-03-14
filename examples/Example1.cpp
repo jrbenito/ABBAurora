@@ -57,6 +57,3 @@ void loop()
         Serial.println(" Wh");
     }
 }
-
-
-#endif
