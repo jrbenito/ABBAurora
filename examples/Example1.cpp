@@ -6,8 +6,7 @@
 #include <ABBAurora.h>
 
 
-#ifndef(ESP8266)
-
+#ifndef ESP8266
 
 #define RX2 16
 #define TX2 17
