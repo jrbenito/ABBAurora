@@ -23,7 +23,7 @@ void setup()
 #ifdef define(ESP832)
     ABBAurora::setup(Serial2, RX2, TX2, TX_CONTROL_GPIO);
   #elif defined(ESP8266)
-    ABBAurora::setup(Serial, RX1, TX1, TX_CONTROL_GPIO2);
+    ABBAurora::setup(Serial, RX2, TX2, TX_CONTROL_GPIO);
 #endif
     inverter = new ABBAurora(INVERTER_ADDRESS);
     Serial.println("Setup done");
