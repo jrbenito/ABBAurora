@@ -29,7 +29,6 @@ cache:
 
 env:
     - PLATFORMIO_CI_SRC=examples/Example1.cpp
-    - PLATFORMIO_CI_SRC=examples/Example2.cpp
 
 install:
     - pip install -U platformio
