@@ -19,7 +19,11 @@ void ABBAurora::setup(HardwareSerial &hardwareSerial, byte RXGpioPin, byte TXGpi
     digitalWrite(TXPinControl, LOW);
 
     serial = &hardwareSerial;
-    serial->begin(19200, SERIAL_8N1, RXGpioPin, TXGpioPin, false, 500);
+    #if defined(ESP32)
+         serial->begin(19200, SERIAL_8N1, RXGpioPin, TXGpioPin, false, 500);
+    #elif defined(ESP8266)
+        serial->begin(19200,SERIAL_8N1);
+    #endif
 }
 
 void ABBAurora::clearData(byte *data, byte len)
