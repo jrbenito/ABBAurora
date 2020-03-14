@@ -40,4 +40,4 @@ install:
     - platformio lib -g install 44 440
 
 script:
-    - platformio ci --lib="." --board=uno --board=moteino --board=megaatmega2560
+    - platformio ci --lib="." --board=uno --board=moteino --board=megaatmega2560 --board=esp8266
