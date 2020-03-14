@@ -6,7 +6,7 @@
 #include <ABBAurora.h>
 
 
-#if not defined(ESP8266)
+#ifndef(ESP8266)
 
 
 #define RX2 16
