@@ -6,18 +6,25 @@
 #include <ABBAurora.h>
 
 
-#ifndef ESP8266
 
 #define RX2 16
 #define TX2 17
+#define RX1 3
+#define TX1 1
 #define INVERTER_ADDRESS 2
 #define TX_CONTROL_GPIO 4
+#define TX_CONTROL_GPIO2 16
 
 ABBAurora *inverter;
 void setup()
 {
     Serial.begin(115200);
+    
+#ifdef define(ESP832)
     ABBAurora::setup(Serial2, RX2, TX2, TX_CONTROL_GPIO);
+  #elif defined(ESP8266)
+    ABBAurora::setup(Serial, RX1, TX1, TX_CONTROL_GPIO2);
+#endif
     inverter = new ABBAurora(INVERTER_ADDRESS);
     Serial.println("Setup done");
 }
