@@ -28,7 +28,8 @@ cache:
         - "~/.platformio"
 
 env:
-    - PLATFORMIO_CI_SRC=examples/abb-menu.ino
+    - PLATFORMIO_CI_SRC=examples/Example1.cpp
+
 
 install:
     - pip install -U platformio
@@ -40,4 +41,5 @@ install:
     - platformio lib -g install 44 440
 
 script:
-    - platformio ci --lib="." --board=uno --board=moteino --board=megaatmega2560
+   # - platformio ci --lib="." --board=d1_mini --board=esp32dev
+    - platformio ci --lib="." --board=uno --board=moteino --board=megaatmega2560 --board=d1_mini --board=esp32dev
